@@ -8,7 +8,7 @@ import os
 from subprocess import run, CalledProcessError
 
 load_dotenv()
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+MONGO_URI = os.getenv("MONGO_URI")
 client = MongoClient(MONGO_URI)
 db = client["bank_marketing_db"]
 results_collection = db["results"]

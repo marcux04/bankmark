@@ -15,7 +15,7 @@ from sklearn.metrics import roc_curve, precision_recall_curve, auc, confusion_ma
 # CONFIGURACIÓN Y CONEXIONES
 # =========================
 load_dotenv()
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+MONGO_URI = os.getenv("MONGO_URI")
 API_BASE = os.getenv("API_BASE", "http://127.0.0.1:8000")  # Asegúrate de que la API esté activa
 
 client = MongoClient(MONGO_URI)

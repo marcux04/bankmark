@@ -12,7 +12,7 @@ import os
 
 # --- Cargar variables de entorno ---
 load_dotenv()
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+MONGO_URI = os.getenv("MONGO_URI")
 
 # --- Conectar a MongoDB ---
 try:
