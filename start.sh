@@ -1,8 +1,14 @@
 #!/bin/bash
-# Script de arranque para correr API + Dashboard
+# Script de arranque para correr API + Dashboard en Elastic Beanstalk
 
-# Ejecuta FastAPI en segundo plano
-nohup python api/app.py > fastapi.log 2>&1 &
+# Activa virtualenv si es necesario
+# source /var/app/venv/*/bin/activate  # EB lo hace automáticamente normalmente
 
-# Ejecuta Streamlit en primer plano en el puerto correcto
-streamlit run c:/Users/anton/OneDrive/Documentos/bankmarketing_app/dashboard/app_streamlit.py --server.port $PORT --server.address 0.0.0.0
+# Inicia FastAPI en segundo plano
+nohup uvicorn api.app:app --host 0.0.0.0 --port 8000 > api.log 2>&1 &
+
+# Espera un poco para asegurar que el backend arranque
+sleep 5
+
+# Inicia Streamlit (usa la ruta relativa correcta)
+streamlit run dashboard/app_streamlit.py --server.port 8080 --server.address 0.0.0.0
