@@ -5,7 +5,7 @@
 # source /var/app/venv/*/bin/activate  # EB lo hace automáticamente normalmente
 
 # Inicia FastAPI en segundo plano
-nohup uvicorn api.app:app --host 0.0.0.0 --port 8000 > api.log 2>&1 &
+nohup uvicorn main:app --host 127.0.0.1 --port 8000 > api.log 2>&1 &
 
 # Espera un poco para asegurar que el backend arranque
 sleep 5
