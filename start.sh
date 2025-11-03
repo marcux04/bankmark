@@ -1,11 +1,8 @@
 #!/bin/bash
-# Inicia la API (FastAPI) en segundo plano
-echo "Starting FastAPI..."
-nohup gunicorn -w 1 -k uvicorn.workers.UvicornWorker api.app:app --bind 0.0.0.0:8000 &
+# Script de arranque para correr API + Dashboard
 
-# Espera unos segundos para asegurar que la API esté arriba
-sleep 5
+# Ejecuta FastAPI en segundo plano
+nohup python api/app.py > fastapi.log 2>&1 &
 
-# Inicia el dashboard Streamlit en el puerto asignado por EB ($PORT)
-echo "Starting Streamlit Dashboard..."
+# Ejecuta Streamlit en primer plano en el puerto correcto
 streamlit run dashboard/app_streamlit.py --server.port $PORT --server.address 0.0.0.0
